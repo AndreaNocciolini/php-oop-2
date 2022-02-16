@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/creditCard.php';
+require_once __DIR__ . '/../traits/PremiumUser.php';
 class User
-{
+{   
+    use PremiumUser;
     protected $id;
     protected $name;
     protected $lastName;
@@ -12,10 +14,14 @@ class User
 
     public function __construct($name, $lastName, $email, int $age)
     {   
+        try {
         $this->name = $name;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->age = $age;
+        $this->age = $age;}
+        catch (TypeError $error){
+            throw new Exception($error->getMessage());
+        }
     }
     /**
      * Get the value of id
@@ -80,6 +86,7 @@ class User
      */
     public function setEmail($email)
     {   
+        
         $this->email = $email;
 
         return $this;
