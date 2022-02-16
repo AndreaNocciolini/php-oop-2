@@ -21,9 +21,9 @@
     ?>
     <ul>
         <li><?php
-    var_dump($newUser->getLevel());?></li>
-        <li><?php 
-    var_dump($newUser->getCreditCards()); ?></li>
+            var_dump($newUser->getLevel()); ?></li>
+        <li><?php
+            var_dump($newUser->getCreditCards()); ?></li>
     </ul>
     <?php $newProduct = new Product('Pollo', 29.99);
     $newProduct->setFunctionality('Lorem ipsum polletti');
