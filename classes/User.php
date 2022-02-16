@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/creditCard.php';
 class User
 {
     protected $id;
@@ -7,10 +8,10 @@ class User
     protected $email;
     protected $age;
     protected $userName;
-    protected $creditCard;
+    protected $creditCards = [];
 
-    public function __construct($name, $lastName, $email,int $age)
-    {
+    public function __construct($name, $lastName, $email, int $age)
+    {   
         $this->name = $name;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -78,7 +79,7 @@ class User
      * @return  self
      */
     public function setEmail($email)
-    {
+    {   
         $this->email = $email;
 
         return $this;
@@ -137,27 +138,34 @@ class User
     }
 
     /**
-     * Get the value of creditCard
+     * Get the value of creditCards
      */
-    public function getCreditCard()
+    public function getCreditCards()
     {
-        return $this->creditCard;
+        return $this->creditCards;
     }
 
     /**
-     * Set the value of creditCard
+     * Set the value of creditCards
      *
      * @return  self
      */
-    public function setCreditCard($creditCard)
+    public function setCreditCards(array $creditCards)
     {
-        $this->creditCard = $creditCard;
-
+        foreach ($creditCards as $creditCard) {
+            $this->creditCards[] = $this->checkCreditCard($creditCard);
+        }
         return $this;
     }
 
-    function printUser(){
-        echo 'NAME: ' .$this->name . ', SURNAME: ' . $this->lastName . ', EMAIL: ' . $this->email . ', AGE: ' . $this->age;
+    private function checkCreditCard(creditCard $creditCard)
+    {
+        return $creditCard;
+    }
+
+    function printUser()
+    {
+        echo 'NAME: ' . $this->name . ', SURNAME: ' . $this->lastName . ', EMAIL: ' . $this->email . ', AGE: ' . $this->age;
         //--> Normally, protected or private data cannot be printed on page via echo, the only way is to use a function.<--\\
     }
 }
